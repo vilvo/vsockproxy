@@ -16,4 +16,3 @@ fn main() {
     println!("vsockproxy started (local port {}, remote cid {}, remote port {})",
              local_port, remote_cid, remote_port);
 }
-o
