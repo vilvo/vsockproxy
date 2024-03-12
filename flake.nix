@@ -19,7 +19,12 @@
             inherit system overlays;
           };
           nativeBuildInputs = with pkgs; [ pkg-config ];
-          buildInputs = with pkgs; [ rust-bin.stable.latest.default openssl ];
+          iperf-vsock = pkgs.callPackage ./packages/iperf-vsock.nix {};
+          buildInputs = with pkgs; [
+            rust-bin.stable.latest.default
+            openssl
+            iperf-vsock
+            ];
         in
         with pkgs;
         {
