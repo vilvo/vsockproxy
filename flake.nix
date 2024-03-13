@@ -25,10 +25,13 @@
         };
         nativeBuildInputs = with pkgs; [pkg-config];
         iperf-vsock = pkgs.callPackage ./packages/iperf-vsock.nix {};
+        vsockproxy-c = pkgs.callPackage ./packages/vsockproxy-c.nix {};
+
         buildInputs = with pkgs; [
           rust-bin.stable.latest.default
           openssl
           iperf-vsock
+          vsockproxy-c
         ];
       in
         with pkgs; {
