@@ -5,7 +5,6 @@ let
   users.users.ghaf = {
     password = "ghaf";
     isNormalUser = true;
-    extraGroups = ["wheel"];
     packages = with pkgs; [iperf-vsock];
   };
   system.stateVersion = "23.11";
@@ -40,7 +39,7 @@ in
     testScript = {nodes, ...}: ''
       guestA.wait_for_unit("default.target")
       guestB.wait_for_unit("default.target")
-      guestA.execute("su -- ghaf -c 'iperf3 --vsock -s'")
-      guestB.execute("su -- ghaf -c 'iperf3 --vsock -c 2'")
+      guestA.succeed("iperf3 --vsock -s")
+      guestB.succeed("iperf3 --vsock -c 2")
     '';
   }
