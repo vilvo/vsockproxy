@@ -19,6 +19,10 @@ in
       ...
     }: {
       inherit users system;
+      virtualisation.qemu.options = [
+        "-device"
+        "vhost-vsock-pci,guest-cid=5"
+        ];
     };
 
     nodes.guestB = {
@@ -27,6 +31,10 @@ in
       ...
     }: {
       inherit users system;
+      virtualisation.qemu.options = [
+        "-device"
+        "vhost-vsock-pci,guest-cid=4"
+      ];
     };
 
     testScript = {nodes, ...}: ''
